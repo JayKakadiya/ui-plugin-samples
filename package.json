@@ -1,6 +1,6 @@
 {
     "name": "@rs-ui-plugins/ui-plugin-samples",
-    "version": "1.0.61",
+    "version": "1.0.64",
     "description": "{{PLUGIN_DESC}}",
     "repository": {
         "type": "git",

@@ -35,6 +35,17 @@
                                             "name": "plugin-entity-connections-viewer",
                                             "path": "/plugin-src/ui-plugin-samples/elements/plugin-entity-connections-viewer/plugin-entity-connections-viewer.js"
                                         }
+                                    },
+                                    "plugin-entity-geography-viewer": {
+                                        "name": "plugin-entity-geography-viewer",
+										"title": "Country Map",
+										"enableDropdownMenu": false,
+										"visible": true,
+										"displaySequence": 80,
+										"component": {
+											"name": "plugin-entity-geography-viewer",
+											"path": "/plugin-src/ui-plugin-samples/elements/plugin-entity-geography-viewer/plugin-entity-geography-viewer.js"
+										}
                                     }
                                 }
                             }
