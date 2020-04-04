@@ -1,0 +1,41 @@
+{
+    "name": "@rs-ui-plugins/ui-plugin-template",
+    "version": "1.0.52",
+    "description": "{{PLUGIN_DESC}}",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/riversandtechnologies/ui-plugin-template.git"
+    },
+    "engines": {
+        "node": ">=10.0"
+    },
+    "license": "",
+    "module": "index.js",
+    "scripts": {
+        "clean-build": "gulp clean-build",
+        "bump-version": "gulp bump-version",
+        "compile-lib": "gulp compile-lib",
+        "compile": "gulp compile",
+        "create-artifact": "gulp create-artifact",
+        "deploy": "gulp deploy-artifact",
+        "deploy-config-prod": "gulp deploy-config-prod",
+        "compile-and-deploy": "gulp compile && gulp create-artifact && gulp deploy-artifact",
+        "compile-and-deploy-prod": "gulp compile --DEPLOY_PROD && gulp create-artifact && gulp deploy-artifact --DEPLOY_PROD",
+        "get-artifacts": "gulp get-artifacts",
+        "disable-prod-artifacts": "gulp disable-prod-artifacts",
+        "lint/all": "node node_modules/eslint/bin/eslint --fix 'src/**' || true",
+        "watch": "watch 'npm run compile-and-deploy' ./src"
+    },
+    "dependencies": {
+        "config": "^3.2.4",
+        "ui-platform-dataaccess": "github:riversandtechnologies/ui-platform-dataaccess#sdk-2020R2",
+        "ui-platform-elements": "github:riversandtechnologies/ui-platform-elements#sdk-2020R2",
+        "ui-platform-tools": "github:riversandtechnologies/ui-platform-tools#sdk-2020R2",
+        "ui-platform-utils": "github:riversandtechnologies/ui-platform-utils#sdk-2020R2",
+        "underscore": "^1.9.1"
+    },
+    "devDependencies": {
+        "watch": "^1.0.2"
+    },
+    "author": "Riversand Technologies, Inc"
+}

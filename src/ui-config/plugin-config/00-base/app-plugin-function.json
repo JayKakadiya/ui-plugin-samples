@@ -1,0 +1,31 @@
+{
+    "metaInfo": {
+        "dataIndex": "config",
+        "collectionName": "configObjects",
+        "responseObjectName": "response"
+    },
+    "configObjects": [
+        {
+            "id": "plugin_app-plugin-function-base_uiConfig",
+            "name": "plugin_app-plugin-function",
+            "version": "1.0",
+            "type": "uiConfig",
+            "properties": {
+                "createdByService": "system",
+                "createdBy": "system"
+            },
+            "data": {
+                "contexts": [
+                    {
+                        "context": {
+                            "component": "app-plugin-function"
+                        },
+                        "jsonData": {
+                            "config": {}
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "metaInfo": {
+        "dataIndex": "config",
+        "collectionName": "configObjects",
+        "responseObjectName": "response"
+    },
+    "configObjects": [
+        {
+            "id": "app-plugin-function_app-entity-manage_uiConfig",
+            "name": "app-plugin-function_app-entity-manage",
+            "type": "uiConfig",
+            "properties": {
+                "createdByService": "system",
+                "createdBy": "system_user"
+            },
+            "data": {
+                "contexts": [
+                    {
+                        "context": {
+                            "component": "app-plugin-function",
+                            "app": "app-entity-manage"
+                        },
+                        "jsonData": {
+                            "config": {
+                                "pluginFunctions": {
+                                    "send-mail-plugin-function": {
+                                        "name": "send-mail-plugin-function",
+                                        "path": "/plugin-src/ui-plugin-hello-world/elements/plugin-functions/send-mail-plugin-function.js"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

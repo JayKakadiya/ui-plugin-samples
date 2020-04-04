@@ -1,0 +1,41 @@
+{
+    "metaInfo": {
+        "dataIndex": "config",
+        "collectionName": "configObjects",
+        "responseObjectName": "response"
+    },
+    "configObjects": [
+        {
+            "id": "rock-business-actions_rdwadmin@riversand.com_user_uiConfig",
+            "name": "rock-business-actions_rdwadmin@riversand.com_user",
+            "type": "uiConfig",
+            "data": {
+                "contexts": [
+                    {
+                        "context": {
+                            "component": "rock-business-actions",
+                            "user": "rdwadmin@riversand.com_user"
+                        },
+                        "jsonData": {
+                            "config": {
+                                "actionGroups": {
+                                    "basic": {
+                                        "actions": {
+                                            "sendMailPluginFunction": {
+                                                "name": "sendMailPluginFunction",
+                                                "icon": "pebble-icon:action-copy",
+                                                "text": "Send Mail",
+                                                "visible": true,
+                                                "actionName": "send-mail-action"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

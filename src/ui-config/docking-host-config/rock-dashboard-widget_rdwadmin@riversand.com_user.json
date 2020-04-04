@@ -1,0 +1,100 @@
+{
+    "metaInfo": {
+        "dataIndex": "config",
+        "collectionName": "configObjects",
+        "responseObjectName": "response"
+    },
+    "configObjects": [
+        {
+            "id": "rock-home-widgets_rdwadmin@riversand.com_user_uiConfig",
+            "name": "rock-home-widgets_rdwadmin@riversand.com_user",
+            "type": "uiConfig",
+            "data": {
+                "contexts": [
+                    {
+                        "context": {
+                            "component": "rock-home-widgets",
+                            "user": "rdwadmin@riversand.com_user"
+                        },
+                        "jsonData": {
+                            "config": {
+                                "widgetRow": 14,
+                                "widgets": {
+                                    "rock-my-todos": {
+                                        "config": {
+                                            "position-x": 0,
+                                            "position-y": 0,
+                                            "width": 4,
+                                            "height": 9
+                                        }
+                                    },
+                                    "rock-saved-searches": {
+                                        "config": {
+                                            "position-x": 0,
+                                            "position-y": 9,
+                                            "width": 4,
+                                            "height": 5
+                                        }
+                                    },
+                                    "rock-syndication-status-widget": {
+                                        "visible": true,
+                                        "config": {
+                                            "position-x": 4,
+                                            "position-y": 0,
+                                            "width": 4,
+                                            "height": 5
+                                        }
+                                    },
+                                    "rock-task-list": {
+                                        "config": {
+                                            "position-x": 4,
+                                            "position-y": 5,
+                                            "width": 4,
+                                            "height": 9
+                                        }
+                                    },
+                                    "plugin-hello-world": {
+                                        "name": "plugin-hello-world",
+                                        "displaySequence": 30,
+                                        "nonClosable": true,
+                                        "nonMaximizable": true,
+                                        "nonDraggable": false,
+                                        "config": {
+                                            "heading": "Hello World",
+                                            "headerIcon": "pebble-icon:saved-search",
+                                            "position-x": 8,
+                                            "position-y": 0,
+                                            "width": 4,
+                                            "height": 10,
+                                            "iconButtons": {
+                                                "refresh": {
+                                                    "name": "refresh",
+                                                    "label": "Refresh",
+                                                    "icon": "pebble-icon:refresh",
+                                                    "showInMoreActions": false
+                                                },
+                                                "Settings": {
+                                                    "name": "settings",
+                                                    "label": "settings",
+                                                    "icon": "pebble-icon:settings",
+                                                    "showInMoreActions": false
+                                                }
+                                            },
+                                            "component": {
+                                                "name": "plugin-hello-world",
+                                                "path": "/plugin-src/ui-plugin-template/elements/plugin-hello-world/plugin-hello-world.js",
+                                                "properties": {
+                                                    "view-mode": true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
