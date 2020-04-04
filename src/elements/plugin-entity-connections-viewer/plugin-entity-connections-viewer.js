@@ -64,16 +64,17 @@ class PluginEntityConnectionsViewer extends LitElement {
             if (relationshipModels) {
                 let entityGraphNodes = [];
                 let entityGraphEdges = [];
-                let relationshipNodes = this._createRelationshipNodesFromModel(relationshipModels);
+                let { relNodes, relEdges } = this._createRelationshipNodesFromModel(entityId, relationshipModels);
 
-                entityGraphNodes = [...entityGraphNodes, ...relationshipNodes];
+                entityGraphNodes = [...entityGraphNodes, ...relNodes];
 
-                let { relEntityNodes, relEntityEdges } = await this._createRelatedEntityNodes(entityId, entityType, relationshipNodes);
+                let { relEntityNodes, relEntityEdges } = await this._createRelatedEntityNodes(entityId, entityType, relNodes);
 
                 entityGraphNodes = [...entityGraphNodes, ...relEntityNodes];
                 let nodes = new vis.DataSet(entityGraphNodes);
 
-                entityGraphEdges = [...entityGraphEdges, ...relEntityEdges];
+                entityGraphEdges = [...entityGraphEdges, ...relEntityEdges, ...relEdges];
+
                 let edges = new vis.DataSet(entityGraphEdges);
 
                 let container = this.shadowRoot.querySelector('#mynetwork');
@@ -91,7 +92,7 @@ class PluginEntityConnectionsViewer extends LitElement {
                     },
                     interaction: {
                         navigationButtons: true,
-                        hover: true,
+                        hover: false
                     }
                 }
 
@@ -137,14 +138,14 @@ class PluginEntityConnectionsViewer extends LitElement {
         return relationshipModels;
     }
 
-
     async _getCoalesceOptions() {
         let coalesceOptions = await EntityCompositeModelManager.getCoalesceOptions(this.contextData);
         return coalesceOptions;
     }
 
-    _createRelationshipNodesFromModel(relationshipModels) {
+    _createRelationshipNodesFromModel(entityId, relationshipModels) {
         let relNodes = [];
+        let relEdges = [];
 
         for (let relModelKey in relationshipModels) {
             let relModels = relationshipModels[relModelKey];
@@ -157,13 +158,25 @@ class PluginEntityConnectionsViewer extends LitElement {
                     relNodes.push({
                         id: relModelKey,
                         label: ownedRelModel.properties.externalName,
-                        shape: 'hexagon'
+                        shape: 'hexagon',
+                        color: {
+                            background: "orange"
+                        }
+                    });
+
+                    relEdges.push({
+                        from: entityId,
+                        to: relModelKey,
+                        color: "green"
                     });
                 }
             }
         }
 
-        return relNodes;
+        return {
+            relNodes: relNodes,
+            relEdges: relEdges
+        };
     }
 
     async _createRelatedEntityNodes(entityId, entityType, relationshipNodes) {
@@ -189,11 +202,13 @@ class PluginEntityConnectionsViewer extends LitElement {
             let createEntityGetRequest = DataAccessManager.createRequest("getbyids", entityGetRequest, undefined, {});
             let entityGetResponse = await DataAccessManager.initiateRequest(createEntityGetRequest);
 
-
             if (ObjectUtils.isValidObjectPath(entityGetResponse, "response.status") && entityGetResponse.response.status == "success") {
                 let entity = ObjectUtils.isValidObjectPath(entityGetResponse, "response.content.entities.0") ? entityGetResponse.response.content.entities[0] : undefined;
-
+                
                 if (entity) {
+                    let rootNode = {"id": entity.id, "label": entity.name, shape: 'triangle', "color": {background: "green"}};
+                    relEntityNodes.push(rootNode);
+
                     let relationships = entity.data.relationships;
 
                     if (relationships) {
@@ -204,19 +219,22 @@ class PluginEntityConnectionsViewer extends LitElement {
                                 relEntityNodes.push({
                                     id: rel.id,
                                     label: rel.relTo.id,
-                                    shape: "box"
+                                    shape: "dot",
+                                    "color": {
+                                        background: "yellow"
+                                    }
                                 });
 
                                 relEntityEdges.push({
                                     from: rel.id,
-                                    to: relKey
+                                    to: relKey,
+                                    color: "orange"
                                 });
                             }
                         }
                     }
                 }
             }
-
         }
 
         return {
