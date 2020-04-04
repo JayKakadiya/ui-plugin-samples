@@ -1,6 +1,6 @@
 {
     "envSettings": {
-        "pluginUniqueIdentifer": "ui-plugin-template",
+        "pluginUniqueIdentifer": "ui-plugin-samples",
         "main" : "elements/plugin-hello-world/plugin-hello-world.js",
         "serverUrl": "https://rdwengg-az-dev2.riversand.com",
         "headers": {
@@ -11,5 +11,5 @@
             "x-rdp-clientid": "rdpClient",
             "x-rdp-userRoles": "\"admin\""
         }
-    }   
+    }
 }

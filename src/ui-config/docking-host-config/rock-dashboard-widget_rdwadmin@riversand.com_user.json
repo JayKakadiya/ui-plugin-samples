@@ -82,7 +82,7 @@
                                             },
                                             "component": {
                                                 "name": "plugin-hello-world",
-                                                "path": "/plugin-src/ui-plugin-template/elements/plugin-hello-world/plugin-hello-world.js",
+                                                "path": "/plugin-src/ui-plugin-samples/elements/plugin-hello-world/plugin-hello-world.js",
                                                 "properties": {
                                                     "view-mode": true
                                                 }

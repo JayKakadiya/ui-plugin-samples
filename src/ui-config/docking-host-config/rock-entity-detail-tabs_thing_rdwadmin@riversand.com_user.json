@@ -1,0 +1,47 @@
+{
+    "metaInfo": {
+        "dataIndex": "config",
+        "collectionName": "configObjects",
+        "responseObjectName": "response"
+    },
+    "configObjects": [
+        {
+            "id": "rock-entity-detail-tabs_thing_rdwadmin@riversand.com_user_uiConfig",
+            "name": "rock-entity-detail-tabs_thing_rdwadmin@riversand.com_user",
+            "version": "1.0",
+            "type": "uiConfig",
+            "properties": {
+                "createdByService": "system",
+                "createdBy": "system"
+            },
+            "data": {
+                "contexts": [
+                    {
+                        "context": {
+                            "component": "rock-entity-detail-tabs",
+                            "domain": "thing",
+                            "user": "rdwadmin@riversand.com_user"
+                        },
+                        "jsonData": {
+                            "config": {
+                                "tabItems": {
+                                    "plugin-entity-connections-viewer": {
+                                        "name": "plugin-entity-connections-viewer",
+                                        "title": "Entity Network",
+                                        "enableDropdownMenu": false,
+                                        "visible": true,
+                                        "displaySequence": 70,
+                                        "component": {
+                                            "name": "plugin-entity-connections-viewer",
+                                            "path": "/plugin-src/ui-plugin-samples/elements/plugin-entity-connections-viewer/plugin-entity-connections-viewer.js"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

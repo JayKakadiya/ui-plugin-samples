@@ -1,10 +1,10 @@
 {
-    "name": "@rs-ui-plugins/ui-plugin-template",
-    "version": "1.0.52",
+    "name": "@rs-ui-plugins/ui-plugin-samples",
+    "version": "1.0.54",
     "description": "{{PLUGIN_DESC}}",
     "repository": {
         "type": "git",
-        "url": "https://github.com/riversandtechnologies/ui-plugin-template.git"
+        "url": "https://github.com/riversandtechnologies/ui-plugin-samples.git"
     },
     "engines": {
         "node": ">=10.0"
