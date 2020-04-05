@@ -296,7 +296,7 @@ class PluginEntityConnectionsViewer extends LitElement {
                             from: relKey,
                             to: relToId,
                             color: "orange",
-                            dashes: true
+                            dashes: contextValue ? true : false
                         });
                     }
 
