@@ -80,6 +80,14 @@ class PluginEntityGeographyViewer extends PolymerElement {
                 value: function () {
                     return [];
                 }
+            },
+            countryEntityType: {
+                type: String,
+                value: ""
+            },
+            isoCountryNameAttribute: {
+                type: String,
+                value: ""
             }
         }
     }
@@ -93,6 +101,10 @@ class PluginEntityGeographyViewer extends PolymerElement {
     }
 
     async _getContexts() {
+        if(ObjectUtils.isEmpty(this.countryEntityType)) {
+            this._message = "Country entity type is not available to show entity geography";
+            return;
+        }
         let currentActiveApp = AppInstanceManager.getCurrentActiveApp();
         let contextData = {};
         if(currentActiveApp) {
@@ -130,15 +142,23 @@ class PluginEntityGeographyViewer extends PolymerElement {
 
             if (entity && entity.data && entity.data.contexts) {
                 entity.data.contexts.forEach(function (ctx) {
-                    if(ctx.context && ctx.context.country) {
-                        countries.push(ctx.context.country);
+                    if(ctx.context && ctx.context[this.countryEntityType]) {
+                        countries.push(ctx.context[this.countryEntityType]);
                     }
                 }, this);
             }
 
             if(!ObjectUtils.isEmpty(countries)) {
-                this.set("_countries", countries);
-                this._getContextManageModel();
+                if(ObjectUtils.isEmpty(this.isoCountryNameAttribute)) {
+                    let countriesData = [["Country"]];
+                    countries.forEach((country) => countriesData.push([country]));
+                    this.set("_countriesData", countriesData);
+                    this._loading = false;
+                    this.set("_loadGeoChart", true);
+                } else {
+                    this.set("_countries", countries);
+                    this._getContextManageModel();
+                }
             } else {
                 this.set("_loadGeoChart", false);
                 this._loading = false;
@@ -155,7 +175,7 @@ class PluginEntityGeographyViewer extends PolymerElement {
         let req = {
             "params": {
                 "query": {
-                    "id": "country_entityManageModel",
+                    "id": this.countryEntityType + "_entityManageModel",
                     "filters": {
                         "typesCriterion": [
                             "entityManageModel"
@@ -206,12 +226,12 @@ class PluginEntityGeographyViewer extends PolymerElement {
                     ],
                     "filters": {
                         "typesCriterion": [
-                            "country"
+                            this.countryEntityType
                         ],
                     }
                 },
                 "fields": {
-                    "attributes": ["countrycode", externalNameAttribute]
+                    "attributes": [this.isoCountryNameAttribute, externalNameAttribute]
                 }
             }
         };
@@ -231,10 +251,18 @@ class PluginEntityGeographyViewer extends PolymerElement {
         let countriesData = [["Country"]];
         if(ObjectUtils.isValidObjectPath(contextEntitiesGetResponse, "response.content.entities.0")) {
             let entities = contextEntitiesGetResponse.response.content.entities;
+            let isoNamePath = "data.attributes." + this.isoCountryNameAttribute + ".values.0.value";
+            let externalNamePath = "data.attributes." + externalNameAttribute + ".values.0.value";
             entities.forEach((entity) => {
-                if(ObjectUtils.isValidObjectPath(entity, "data.attributes.countrycode.values.0.value")) {
-                    let countrycode = entity.data.attributes[externalNameAttribute].values[0].value;
-                    countriesData.push([countrycode]);
+                let countryName;
+                if(ObjectUtils.isValidObjectPath(entity, isoNamePath)) {
+                    countryName = entity.data.attributes[this.isoCountryNameAttribute].values[0].value;
+                } else if (ObjectUtils.isValidObjectPath(entity, externalNamePath)) {
+                    countryName = entity.data.attributes[externalNameAttribute].values[0].value;
+                }
+
+                if(countryName) {
+                    countriesData.push([countryName]);
                 }
             })
         }
