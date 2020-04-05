@@ -44,7 +44,11 @@
 										"displaySequence": 80,
 										"component": {
 											"name": "plugin-entity-geography-viewer",
-											"path": "/plugin-src/ui-plugin-samples/elements/plugin-entity-geography-viewer/plugin-entity-geography-viewer.js"
+											"path": "/plugin-src/ui-plugin-samples/elements/plugin-entity-geography-viewer/plugin-entity-geography-viewer.js",
+                                            "properties": {
+                                                "country-entity-type": "country",
+                                                "iso-country-name-attribute": "isocountryname"
+                                            }
 										}
                                     }
                                 }
